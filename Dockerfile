@@ -11,8 +11,7 @@ RUN chown logstash:root  /usr/share/logstash/config/logstash.conf
 RUN chown logstash:root /usr/share/logstash/config/logstash.yml && \
     chmod 777 /usr/share/logstash/config/logstash.yml
 
-# Troque de volta para o usuário padrão do logstash após ter alterado as permissões
-USER logstash
+
 
 # Baixar e extrair o Elastic Agent
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.12.2-linux-x86_64.tar.gz && \
@@ -21,6 +20,9 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elasti
     
 # Substitua a URL e o token de inscrição pelos seus valores reais
 RUN sudo ./elastic-agent install --url=https://8943fceed2f04dcd82b5bbaf85a6e61b.fleet.eastus2.azure.elastic-cloud.com:443 --enrollment-token=enlSOEdZNEJ3c3dKbmd6b1VvbVg6SUtJemlJNExScjJ4MHQ4cWJaaGhYQQ==
+
+# Troque de volta para o usuário padrão do logstash após ter alterado as permissões
+USER logstash
 
 # Opcional: Adicione certificados SSL ou outros arquivos necessários
 # COPY path/to/your/cert.crt /path/in/container/cert.crt
