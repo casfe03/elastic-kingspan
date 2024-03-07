@@ -5,6 +5,14 @@ FROM docker.elastic.co/logstash/logstash:8.12.2
 # O arquivo 'logstash.conf' deve estar no mesmo diretório que este Dockerfile
 COPY logstash.conf /usr/share/logstash/config/logstash.conf
 
+# Defina o proprietário e as permissões para o diretório de configuração
+USER root
+RUN chown logstash:root /usr/share/logstash/config/logstash.yml && \
+    chmod 644 /usr/share/logstash/config/logstash.yml
+
+# Troque de volta para o usuário padrão do logstash após ter alterado as permissões
+USER logstash
+
 # Opcional: Adicione certificados SSL ou outros arquivos necessários
 # COPY path/to/your/cert.crt /path/in/container/cert.crt
 # COPY path/to/your/cert.key /path/in/container/cert.key
