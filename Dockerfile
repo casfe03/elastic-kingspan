@@ -4,19 +4,13 @@ FROM docker.elastic.co/logstash/logstash:8.12.2
 # Copie seu arquivo de configuração personalizado do Logstash para o container
 # O arquivo 'logstash.conf' deve estar no mesmo diretório que este Dockerfile
 COPY logstash.conf /usr/share/logstash/config/logstash.conf
+COPY logstash.yml /usr/share/logstash/config/logstash.yml
 
 # Defina o proprietário e as permissões para o diretório de configuração
 USER root
 RUN chown logstash:root  /usr/share/logstash/config/logstash.conf
 RUN chown logstash:root /usr/share/logstash/config/logstash.yml && \
     chmod 777 /usr/share/logstash/config/logstash.yml
-
-RUN echo 'http.host: "0.0.0.0"' > /usr/share/logstash/config/logstash.yml && \
-    echo 'xpack.monitoring.elasticsearch.hosts: ["https://53a256b7a16748e4bae93c8dbe7f3930.eastus2.azure.elastic-cloud.com:443"]' >> /usr/share/logstash/config/logstash.yml && \
-    echo 'xpack.monitoring.elasticsearch.username: "logstash-user"' >> /usr/share/logstash/config/logstash.yml && \
-    echo 'xpack.monitoring.elasticsearch.password: "zmVB!TG6LxJ?sG"' >> /usr/share/logstash/config/logstash.yml
-
-
 
 # Baixar e extrair o Elastic Agent
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.12.2-linux-x86_64.tar.gz && \
