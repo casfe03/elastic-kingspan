@@ -1,0 +1,4 @@
+http.host: "0.0.0.0"
+xpack.monitoring.elasticsearch.hosts: ["https://53a256b7a16748e4bae93c8dbe7f3930.eastus2.azure.elastic-cloud.com:443"]
+xpack.monitoring.elasticsearch.username: "logstash-user"
+xpack.monitoring.elasticsearch.password: "zmVB!TG6LxJ?sG"
