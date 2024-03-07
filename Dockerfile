@@ -19,7 +19,7 @@ USER logstash
 
 # O Logstash por padrão irá buscar as configurações em /usr/share/logstash/pipeline/
 # Portanto, é preciso configurar o caminho se um local diferente for utilizado
-ENV PATH_CONFIG /usr/share/logstash/config/logstash.conf
+ENV PATH_CONFIG logstash.conf
 
 # Exponha a porta que o Logstash usará
 EXPOSE 5044
