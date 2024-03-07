@@ -11,6 +11,11 @@ RUN chown logstash:root  /usr/share/logstash/config/logstash.conf
 RUN chown logstash:root /usr/share/logstash/config/logstash.yml && \
     chmod 777 /usr/share/logstash/config/logstash.yml
 
+RUN echo 'http.host: "0.0.0.0"' > /usr/share/logstash/config/logstash.yml && \
+    echo 'xpack.monitoring.elasticsearch.hosts: ["https://53a256b7a16748e4bae93c8dbe7f3930.eastus2.azure.elastic-cloud.com:4433"]' >> /usr/share/logstash/config/logstash.yml && \
+    echo 'xpack.monitoring.elasticsearch.username: "logstash-user"' >> /usr/share/logstash/config/logstash.yml && \
+    echo 'xpack.monitoring.elasticsearch.password: "zmVB!TG6LxJ?sG"' >> /usr/share/logstash/config/logstash.yml
+
 
 
 # Baixar e extrair o Elastic Agent
