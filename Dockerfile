@@ -8,7 +8,7 @@ COPY logstash.conf /usr/share/logstash/config/logstash.conf
 # Defina o proprietário e as permissões para o diretório de configuração
 USER root
 RUN chown logstash:root /usr/share/logstash/config/logstash.yml && \
-    chmod 644 /usr/share/logstash/config/logstash.yml
+    chmod 777 /usr/share/logstash/config/logstash.yml
 
 # Troque de volta para o usuário padrão do logstash após ter alterado as permissões
 USER logstash
